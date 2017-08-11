@@ -18,6 +18,11 @@ public class CarService {
 	@Autowired
 	PersonRepo personRepo;
 	
+	/*
+	 * two new relationships between person and a car: mechanic and favourite car.
+	 * These relationships are two disconnected unidirectional relationships, and should not be merged into one bidirectional, because, the are not the same.
+	 */
+	
 	public Person setFavouriteCar(Car favourite, Person person){
 		Assert.notNull(favourite, "cannot add person to null");											// assert
 		Assert.notNull(person, "cannot add null to car");
