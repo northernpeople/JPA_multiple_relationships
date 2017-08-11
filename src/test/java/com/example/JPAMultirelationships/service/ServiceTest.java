@@ -1,5 +1,6 @@
 package com.example.JPAMultirelationships.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -35,6 +36,24 @@ public class ServiceTest {
 	}
 	
 	@Test
+	public void shouldSetMechanic(){
+		carService.setMechanic(car, person);							// build unidrectional relationship: mechanic of a car
+		
+		car = carService.findById(car.getId()); 						// refresh from database
+		
+		assertTrue(car.getMechanic().equals(person));
+	}
+	
+	@Test
+	public void shouldSetFavouriteCar(){
+		carService.setFavouriteCar(car, person);
+		
+		person = personService.findById(person.getId());        // refresh
+		
+		assertEquals(person.getFavouriteCar(), car);
+	}
+	
+	@Test
 	public void shouldAddOwnerToCar(){		
 		carService.addOwnerTo(car, person);							// create link: this creates ownership relationship!
 		
@@ -56,6 +75,8 @@ public class ServiceTest {
 		assertTrue(car.getDrivers().contains(person));				// relationship established ? (second of two)
 		assertTrue(person.getPermittedToDrive().equals(car));	
 	}
+	
+	
 	
 	
 	@Test

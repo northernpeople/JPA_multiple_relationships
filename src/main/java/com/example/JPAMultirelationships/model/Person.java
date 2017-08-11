@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Person {
@@ -19,7 +20,17 @@ public class Person {
 	@ManyToOne
 	Car permittedToDrive;
 
+	@OneToOne
+	Car favouriteCar;
 	
+
+	public Car getFavouriteCar() {
+		return favouriteCar;
+	}
+
+	public void setFavouriteCar(Car favouriteCar) {
+		this.favouriteCar = favouriteCar;
+	}
 
 	public Car getOwnedCar() {
 		return ownedCar;

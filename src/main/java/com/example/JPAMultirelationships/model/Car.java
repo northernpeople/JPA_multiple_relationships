@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -42,8 +43,20 @@ public class Car {
 	 */
 	
 	
+	@OneToOne
+	Person mechanic;
+	
+	
 	public Set<Person> getOwners() {
 		return owners;
+	}
+
+	public Person getMechanic() {
+		return mechanic;
+	}
+
+	public void setMechanic(Person mechanic) {
+		this.mechanic = mechanic;
 	}
 
 	public void setOwners(Set<Person> owners) {
